@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.34114.132
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CrabRemoteClient", "CrabRemoteClient\CrabRemoteClient.vcxproj", "{969A3146-C140-424D-805B-BC9EB9172549}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Dll", "Dll\Dll.vcxproj", "{48E64815-5804-4DE2-8DBB-861009B6E0B6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{969A3146-C140-424D-805B-BC9EB9172549}.Debug|x64.ActiveCfg = Debug|x64
+		{969A3146-C140-424D-805B-BC9EB9172549}.Debug|x64.Build.0 = Debug|x64
+		{969A3146-C140-424D-805B-BC9EB9172549}.Debug|x86.ActiveCfg = Debug|Win32
+		{969A3146-C140-424D-805B-BC9EB9172549}.Debug|x86.Build.0 = Debug|Win32
+		{969A3146-C140-424D-805B-BC9EB9172549}.Release|x64.ActiveCfg = Release|x64
+		{969A3146-C140-424D-805B-BC9EB9172549}.Release|x64.Build.0 = Release|x64
+		{969A3146-C140-424D-805B-BC9EB9172549}.Release|x86.ActiveCfg = Release|Win32
+		{969A3146-C140-424D-805B-BC9EB9172549}.Release|x86.Build.0 = Release|Win32
+		{48E64815-5804-4DE2-8DBB-861009B6E0B6}.Debug|x64.ActiveCfg = Debug|x64
+		{48E64815-5804-4DE2-8DBB-861009B6E0B6}.Debug|x64.Build.0 = Debug|x64
+		{48E64815-5804-4DE2-8DBB-861009B6E0B6}.Debug|x86.ActiveCfg = Debug|Win32
+		{48E64815-5804-4DE2-8DBB-861009B6E0B6}.Debug|x86.Build.0 = Debug|Win32
+		{48E64815-5804-4DE2-8DBB-861009B6E0B6}.Release|x64.ActiveCfg = Release|x64
+		{48E64815-5804-4DE2-8DBB-861009B6E0B6}.Release|x64.Build.0 = Release|x64
+		{48E64815-5804-4DE2-8DBB-861009B6E0B6}.Release|x86.ActiveCfg = Release|Win32
+		{48E64815-5804-4DE2-8DBB-861009B6E0B6}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B6EE6914-5946-4532-90FF-3FE07CA94022}
+	EndGlobalSection
+EndGlobal
