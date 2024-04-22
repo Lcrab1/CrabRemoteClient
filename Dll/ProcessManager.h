@@ -3,6 +3,7 @@
 #include"Common.h"
 #include"ProcessHelper.h"
 #include"MemoryHelper.h"
+#include"VMMap.h"
 class CProcessManager :
     public CManager
 {
@@ -18,11 +19,14 @@ public:
     BOOL SendClientAddressList();
     void MemoryUndoScan();
     void MemoryValueChange(PBYTE bufferData, ULONG_PTR BufferLength);
+    void GetSystemInfo(PBYTE bufferData, ULONG_PTR BufferLength);
+    void QueryVMAdddress(HANDLE ProcessID);
 public:
     HANDLE                  m_CurrentProcessID;
     std::vector<size_t>*    m_Address;
     int                     m_ElementCount;
     HANDLE                  m_TargetHandle;
-    BYTE                     m_ScanRelpy;
+    BYTE                    m_ScanRelpy;
+    CVMMap                  m_VMMap;
 };
 

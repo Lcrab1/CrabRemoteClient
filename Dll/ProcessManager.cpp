@@ -92,6 +92,12 @@ void CProcessManager::HandleIo(PBYTE BufferData, ULONG_PTR BufferLength)
 			//EnableSeDebugPrivilege(GetCurrentProcess(), TRUE, SE_DEBUG_NAME);
 			MemoryValueChange((LPBYTE)BufferData + sizeof(BYTE), sizeof(int));
 			//EnableSeDebugPrivilege(GetCurrentProcess(), FALSE, SE_DEBUG_NAME);
+			break;
+		}
+		case CLIENT_VMMAP_SYSTEM_INFO_REQUIRE:
+		{
+			GetSystemInfo((LPBYTE)BufferData + sizeof(BYTE), sizeof(HANDLE));
+			break;
 		}
 
 	}
@@ -342,6 +348,18 @@ void CProcessManager::MemoryValueChange(PBYTE bufferData, ULONG_PTR BufferLength
 	}
 	//BOOL Error = GetLastError();
 	//VirtualProtectEx(processHandle, &targetAddress, sizeof(targetAddress), flOldProtect, NULL);
+}
+
+void CProcessManager::GetSystemInfo(PBYTE bufferData, ULONG_PTR BufferLength)
+{
+	HANDLE  processID;
+	memcpy(&processID, bufferData, sizeof(HANDLE));
+	QueryVMAdddress(processID);
+
+}
+
+void CProcessManager::QueryVMAdddress(HANDLE ProcessID)
+{
 }
 
 BOOL CProcessManager::SendClientProcessList()

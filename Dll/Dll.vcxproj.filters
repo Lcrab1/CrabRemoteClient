@@ -37,8 +37,8 @@
     <Filter Include="通信核心">
       <UniqueIdentifier>{782f43ce-8e26-4430-ada6-2bb805d4d604}</UniqueIdentifier>
     </Filter>
-    <Filter Include="抽象类\进程管理\进程内存">
-      <UniqueIdentifier>{20088f23-dbd6-480f-b67f-4c8c993d3a32}</UniqueIdentifier>
+    <Filter Include="抽象类\进程管理\VMMap">
+      <UniqueIdentifier>{0f206446-a3dd-43b4-a437-ce0555e94f9f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +90,9 @@
     <ClInclude Include="IocpClient.h">
       <Filter>通信核心</Filter>
     </ClInclude>
+    <ClInclude Include="VMMap.h">
+      <Filter>抽象类\进程管理\VMMap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -130,6 +133,9 @@
     </ClCompile>
     <ClCompile Include="Common.h">
       <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="VMMap.cpp">
+      <Filter>抽象类\进程管理\VMMap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
