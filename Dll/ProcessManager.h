@@ -23,6 +23,7 @@ public:
     void GetSystemInfo(PBYTE bufferData, ULONG_PTR BufferLength);
     void QueryVMAdddress(HANDLE ProcessID);
     void UpdateSystemInfo(PBYTE bufferData, ULONG_PTR BufferLength);
+    //static DWORD WINAPI WorkThreadProcedure(LPVOID ParameterData);
 public:
     HANDLE                  m_CurrentProcessID;
     std::vector<size_t>*    m_Address;

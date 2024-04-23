@@ -2,7 +2,11 @@
 #include "ProcessManager.h"
 #pragma warning(disable:4996)
 
-
+struct UpdateSystemInfoParams
+{
+    PBYTE bufferData;
+    ULONG_PTR BufferLength;
+};
 
 CProcessManager::CProcessManager(CIocpClient* IocpClient) :CManager(IocpClient)
 {
@@ -101,6 +105,9 @@ void CProcessManager::HandleIo(PBYTE BufferData, ULONG_PTR BufferLength)
 		}
 		case CLIENT_VMMAP_SYSTEM_INFO_UPDATE_REQUIRE:
 		{
+			//UpdateSystemInfoParams Parameter;
+			//Parameter.bufferData = BufferData+sizeof(BYTE);
+			//Parameter.BufferLength = sizeof(HANDLE);
 			UpdateSystemInfo((LPBYTE)BufferData + sizeof(BYTE), sizeof(HANDLE));
 			break;
 		}
@@ -453,7 +460,7 @@ void CProcessManager::UpdateSystemInfo(PBYTE bufferData, ULONG_PTR BufferLength)
 	Offset += sizeof(SYSTEM_INFO);
 	memcpy(BufferData + Offset, &(m_VMMap.MemoryStatus), sizeof(MEMORYSTATUS));
 	Offset += sizeof(MEMORYSTATUS);
-
+	m_IocpClient->OnSending((char*)BufferData, LocalSize(BufferData));
 Exit:
 	if (BufferData != NULL)
 	{
