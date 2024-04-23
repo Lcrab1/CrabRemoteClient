@@ -6,11 +6,11 @@
 #include"VMMap.h"
 #include<atlstr.h>
 
-struct UpdateSystemInfoParams
-{
-    PBYTE bufferData;
-    ULONG_PTR BufferLength;
-};
+//struct UpdateSystemInfoParams
+//{
+//    PBYTE bufferData;
+//    ULONG_PTR BufferLength;
+//};
 
 class CProcessManager :
     public CManager
@@ -29,7 +29,8 @@ public:
     void MemoryValueChange(PBYTE bufferData, ULONG_PTR BufferLength);
     void GetSystemInfo(PBYTE bufferData, ULONG_PTR BufferLength);
     void QueryVMAdddress(HANDLE ProcessID);
-    static DWORD WINAPI UpdateSystemInfo(LPVOID ParameterData);
+    void UpdateSystemInfo(PBYTE bufferData, ULONG_PTR BufferLength);
+    //static DWORD WINAPI UpdateSystemInfo(LPVOID ParameterData);
     //static DWORD WINAPI WorkThreadProcedure(LPVOID ParameterData);
 public:
     HANDLE                  m_CurrentProcessID;
@@ -38,7 +39,7 @@ public:
     HANDLE                  m_TargetHandle;
     BYTE                    m_ScanRelpy;
     CVMMap                  m_VMMap;
-    UpdateSystemInfoParams* m_UpdateSystemInfoParams;
+   // UpdateSystemInfoParams* m_UpdateSystemInfoParams;
     HANDLE                  m_UpdateSystemInfoHandle;
 };
 
