@@ -4,6 +4,7 @@
 #include"ProcessHelper.h"
 #include"MemoryHelper.h"
 #include"VMMap.h"
+#include<atlstr.h>
 class CProcessManager :
     public CManager
 {
@@ -21,6 +22,7 @@ public:
     void MemoryValueChange(PBYTE bufferData, ULONG_PTR BufferLength);
     void GetSystemInfo(PBYTE bufferData, ULONG_PTR BufferLength);
     void QueryVMAdddress(HANDLE ProcessID);
+    void UpdateSystemInfo(PBYTE bufferData, ULONG_PTR BufferLength);
 public:
     HANDLE                  m_CurrentProcessID;
     std::vector<size_t>*    m_Address;

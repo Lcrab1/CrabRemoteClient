@@ -99,6 +99,11 @@ void CProcessManager::HandleIo(PBYTE BufferData, ULONG_PTR BufferLength)
 			GetSystemInfo((LPBYTE)BufferData + sizeof(BYTE), sizeof(HANDLE));
 			break;
 		}
+		case CLIENT_VMMAP_SYSTEM_INFO_UPDATE_REQUIRE:
+		{
+			UpdateSystemInfo((LPBYTE)BufferData + sizeof(BYTE), sizeof(HANDLE));
+			break;
+		}
 
 	}
 	}
@@ -360,6 +365,101 @@ void CProcessManager::GetSystemInfo(PBYTE bufferData, ULONG_PTR BufferLength)
 
 void CProcessManager::QueryVMAdddress(HANDLE ProcessID)
 {
+	this->m_VMMap.GetSystemInfo();
+	this->m_VMMap.GetMemoryStatus();
+	if (this->m_VMMap.GetMemoryBasicInfo(ProcessID) == FALSE)
+	{
+		MessageBox(NULL,"获取信息失败!","错误",NULL);
+		return;
+	}
+	DWORD LastError = GetLastError();
+	DWORD v1=0;
+	UINT Index = 0;
+	list<MEMORY_BASIC_INFORMATION>::iterator Travel;
+	PBYTE BufferData = NULL;
+	DWORD Offset = sizeof(BYTE);
+	BufferData = (PBYTE)LocalAlloc(LPTR, 0x1000);
+	BufferData[0] = CLIENT_VMMAP_SYSTEM_INFO_REPLY;
+	if (BufferData == NULL)
+	{
+		goto Exit;
+	}
+
+	//获取系统信息
+	if (LocalSize(BufferData) < (Offset + v1))
+	{
+		BufferData = (PBYTE)LocalReAlloc(BufferData, (Offset + v1),
+			LMEM_ZEROINIT | LMEM_MOVEABLE);
+	}
+	memcpy(BufferData + Offset, &(m_VMMap.SystemInfo), sizeof(SYSTEM_INFO));
+	Offset += sizeof(SYSTEM_INFO);
+	memcpy(BufferData + Offset, &(m_VMMap.MemoryStatus), sizeof(MEMORYSTATUS));
+	Offset += sizeof(MEMORYSTATUS);
+	//获取进程地址信息
+	for (Travel = this->m_VMMap.MemoryBasicInfoList.begin();
+		Travel != this->m_VMMap.MemoryBasicInfoList.end(); Travel++)
+	{
+		//获取系统信息
+		v1 = sizeof(MEMORY_BASIC_INFORMATION);
+		if (LocalSize(BufferData) < (Offset + v1))
+		{
+			BufferData = (PBYTE)LocalReAlloc(BufferData, (Offset + v1),
+				LMEM_ZEROINIT | LMEM_MOVEABLE);
+		}
+		memcpy(BufferData + Offset, &(*Travel), sizeof(MEMORY_BASIC_INFORMATION));
+		Offset += sizeof(MEMORY_BASIC_INFORMATION);
+	}
+	//Sleep(100);
+	m_IocpClient->OnSending((char*)BufferData, LocalSize(BufferData));
+Exit:
+	if (BufferData != NULL)
+	{
+		LocalFree(BufferData);
+		BufferData = NULL;
+	}
+}
+
+void CProcessManager::UpdateSystemInfo(PBYTE bufferData, ULONG_PTR BufferLength)
+{
+	HANDLE  processID;
+	memcpy(&processID, bufferData, sizeof(HANDLE));
+	this->m_VMMap.GetSystemInfo();
+	this->m_VMMap.GetMemoryStatus();
+	if (this->m_VMMap.GetMemoryBasicInfo(processID) == FALSE)
+	{
+		MessageBox(NULL, "获取信息失败!", "错误", NULL);
+		return;
+	}
+	DWORD LastError = GetLastError();
+	DWORD v1 = 0;
+	UINT Index = 0;
+	list<MEMORY_BASIC_INFORMATION>::iterator Travel;
+	PBYTE BufferData = NULL;
+	DWORD Offset = sizeof(BYTE);
+	BufferData = (PBYTE)LocalAlloc(LPTR, 0x1000);
+	BufferData[0] = CLIENT_VMMAP_SYSTEM_INFO_UPDATE_REPLY;
+	if (BufferData == NULL)
+	{
+		goto Exit;
+	}
+
+	//获取系统信息
+	if (LocalSize(BufferData) < (Offset + v1))
+	{
+		BufferData = (PBYTE)LocalReAlloc(BufferData, (Offset + v1),
+			LMEM_ZEROINIT | LMEM_MOVEABLE);
+	}
+	memcpy(BufferData + Offset, &(m_VMMap.SystemInfo), sizeof(SYSTEM_INFO));
+	Offset += sizeof(SYSTEM_INFO);
+	memcpy(BufferData + Offset, &(m_VMMap.MemoryStatus), sizeof(MEMORYSTATUS));
+	Offset += sizeof(MEMORYSTATUS);
+
+Exit:
+	if (BufferData != NULL)
+	{
+		LocalFree(BufferData);
+		BufferData = NULL;
+	}
 }
 
 BOOL CProcessManager::SendClientProcessList()
