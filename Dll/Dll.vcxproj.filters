@@ -40,6 +40,9 @@
     <Filter Include="抽象类\进程管理\VMMap">
       <UniqueIdentifier>{0f206446-a3dd-43b4-a437-ce0555e94f9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Cmd管理">
+      <UniqueIdentifier>{cbf8d565-71bd-4289-9da4-cfe03dde3cb2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -93,6 +96,9 @@
     <ClInclude Include="VMMap.h">
       <Filter>抽象类\进程管理\VMMap</Filter>
     </ClInclude>
+    <ClInclude Include="CmdManager.h">
+      <Filter>Cmd管理</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -136,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="VMMap.cpp">
       <Filter>抽象类\进程管理\VMMap</Filter>
+    </ClCompile>
+    <ClCompile Include="CmdManager.cpp">
+      <Filter>Cmd管理</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

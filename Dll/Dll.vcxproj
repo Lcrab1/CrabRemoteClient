@@ -158,6 +158,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CArray.h" />
+    <ClInclude Include="CmdManager.h" />
     <ClInclude Include="dllmain.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="InstantMessageManager.h" />
@@ -177,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CArray.cpp" />
+    <ClCompile Include="CmdManager.cpp" />
     <ClCompile Include="Common.h" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="InstantMessageManager.cpp" />

