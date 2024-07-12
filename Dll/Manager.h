@@ -13,7 +13,7 @@ class CManager
 {
 public:
 	CManager(CIocpClient* IocpClient);
-	~CManager();
+	virtual ~CManager();
 	virtual void HandleIo(PBYTE BufferData, ULONG_PTR BufferLength)
 	{
 

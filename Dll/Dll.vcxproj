@@ -173,6 +173,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="SystemHelper.h" />
     <ClInclude Include="VMMap.h" />
+    <ClInclude Include="WindowManager.h" />
     <ClInclude Include="zconf.h" />
     <ClInclude Include="zlib.h" />
   </ItemGroup>
@@ -197,6 +198,7 @@
     <ClCompile Include="ProcessManager.cpp" />
     <ClCompile Include="SystemHelper.cpp" />
     <ClCompile Include="VMMap.cpp" />
+    <ClCompile Include="WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source.def" />

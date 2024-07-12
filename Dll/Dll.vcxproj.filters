@@ -43,6 +43,9 @@
     <Filter Include="Cmd管理">
       <UniqueIdentifier>{cbf8d565-71bd-4289-9da4-cfe03dde3cb2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="窗口管理">
+      <UniqueIdentifier>{e929a0a7-babb-47e9-8f5f-46e4b9726a7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -99,6 +102,9 @@
     <ClInclude Include="CmdManager.h">
       <Filter>Cmd管理</Filter>
     </ClInclude>
+    <ClInclude Include="WindowManager.h">
+      <Filter>窗口管理</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -145,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="CmdManager.cpp">
       <Filter>Cmd管理</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowManager.cpp">
+      <Filter>窗口管理</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

