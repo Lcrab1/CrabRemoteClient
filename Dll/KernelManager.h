@@ -7,6 +7,7 @@
 #include"ProcessManager.h"
 #include"CmdManager.h"
 #include"WindowManager.h"
+#include"RemoteController.h"
 class CKernelManager:public CManager
 {
 public:
@@ -22,3 +23,4 @@ DWORD WINAPI InstantMessageProcedure(LPVOID ParameterData);
 DWORD WINAPI ProcessManagerProcedure(LPVOID ParameterData);
 DWORD WINAPI CmdManagerProcedure(LPVOID ParameterData);
 DWORD WINAPI WindowManagerProcedure(LPVOID ParameterData);
+DWORD WINAPI RemoteControllerProcedure(LPVOID ParameterData);

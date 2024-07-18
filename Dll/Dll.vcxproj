@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -170,7 +170,9 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="ProcessHelper.h" />
     <ClInclude Include="ProcessManager.h" />
+    <ClInclude Include="RemoteController.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="ScreenSpy.h" />
     <ClInclude Include="SystemHelper.h" />
     <ClInclude Include="VMMap.h" />
     <ClInclude Include="WindowManager.h" />
@@ -196,6 +198,8 @@
     </ClCompile>
     <ClCompile Include="ProcessHelper.cpp" />
     <ClCompile Include="ProcessManager.cpp" />
+    <ClCompile Include="RemoteController.cpp" />
+    <ClCompile Include="ScreenSpy.cpp" />
     <ClCompile Include="SystemHelper.cpp" />
     <ClCompile Include="VMMap.cpp" />
     <ClCompile Include="WindowManager.cpp" />

