@@ -160,6 +160,7 @@
     <ClInclude Include="CArray.h" />
     <ClInclude Include="CmdManager.h" />
     <ClInclude Include="dllmain.h" />
+    <ClInclude Include="FileManager.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="InstantMessageManager.h" />
     <ClInclude Include="IocpClient.h" />
@@ -184,6 +185,7 @@
     <ClCompile Include="CmdManager.cpp" />
     <ClCompile Include="Common.h" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="InstantMessageManager.cpp" />
     <ClCompile Include="IocpClient.cpp" />
     <ClCompile Include="KernelManager.cpp" />

@@ -6,6 +6,7 @@
 #include <TlHelp32.h>
 #include <Psapi.h>
 #pragma comment(lib,"Psapi.lib")
+#include <shellapi.h>
 #include"MemoryHelper.h"
 using namespace std;
 

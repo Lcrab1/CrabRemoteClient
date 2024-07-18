@@ -49,6 +49,9 @@
     <Filter Include="远程控制">
       <UniqueIdentifier>{3f67751c-ed33-47c6-b372-12526de4b7d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="文件管理">
+      <UniqueIdentifier>{0084ae5f-33e9-4ad8-9a4e-27e43b04ba91}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -114,6 +117,9 @@
     <ClInclude Include="ScreenSpy.h">
       <Filter>远程控制</Filter>
     </ClInclude>
+    <ClInclude Include="FileManager.h">
+      <Filter>文件管理</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -169,6 +175,9 @@
     </ClCompile>
     <ClCompile Include="ScreenSpy.cpp">
       <Filter>远程控制</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManager.cpp">
+      <Filter>文件管理</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
