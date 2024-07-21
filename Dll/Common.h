@@ -7,6 +7,19 @@ using namespace std;
 
 enum
 {
+	TRANSFER_MODE_NORMAL = 0x00,	//一般,如果本地或者远程已经有，取消
+	TRANSFER_MODE_ADDITION,			//追加
+	TRANSFER_MODE_ADDITION_ALL,		//全部追加
+	TRANSFER_MODE_COVER,		    //
+	TRANSFER_MODE_JUMP,				//覆盖覆盖
+	TRANSFER_MODE_COVER_ALL,	    //全部覆盖
+	TRANSFER_MODE_JUMP_ALL,			//全部覆盖
+	TRANSFER_MODE_CANCEL,			//取消传送
+};
+
+
+enum
+{
 	CLIENT_LOGIN,				// 上线包
 	CLIENT_GET_OUT_REQUIRE,
 	CLIENT_GET_OUT_REPLY,
