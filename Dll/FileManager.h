@@ -22,6 +22,7 @@ public:
     VOID GetServerFileData();
     VOID WriteReceivedFileData(LPBYTE BufferData, ULONG BufferLength);
     VOID SetTransferMode(LPBYTE BufferData);
+    VOID FileRename(LPCSTR ExistingFileFullPath, LPCSTR NewFileFullPath);
 
     char    m_FileFullPath[MAX_PATH];
     ULONG   m_TransferMode;

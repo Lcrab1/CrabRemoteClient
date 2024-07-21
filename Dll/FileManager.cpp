@@ -200,7 +200,17 @@ void CFileManager::HandleIo(PBYTE BufferData, ULONG_PTR BufferLength)
 		SetTransferMode(BufferData + 1);
 		break;
 	}
+	case CLIENT_FILE_MANAGER_FILE_RENAME_REQUIRE:
+	{
 
+		BufferData += 1;
+		char* ExistingFileFullPath = NULL;
+		char* NewFileFullPath = NULL;
+		NewFileFullPath = ExistingFileFullPath = (char*)BufferData;
+		NewFileFullPath += strlen((char*)NewFileFullPath) + 1;
+		FileRename(ExistingFileFullPath, NewFileFullPath);
+		break;
+	}
     }
 }
 
@@ -446,4 +456,9 @@ VOID CFileManager::SetTransferMode(LPBYTE BufferData)
 {
 	memcpy(&m_TransferMode, BufferData, sizeof(m_TransferMode));
 	GetServerFileData();
+}
+
+VOID CFileManager::FileRename(LPCSTR ExistingFileFullPath, LPCSTR NewFileFullPath)
+{
+	MoveFileA(ExistingFileFullPath, NewFileFullPath);
 }
