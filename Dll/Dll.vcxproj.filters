@@ -55,6 +55,9 @@
     <Filter Include="注册表管理">
       <UniqueIdentifier>{b1c27fd0-90fc-4aa6-a2a8-4de532fbabe9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="服务管理">
+      <UniqueIdentifier>{e543037c-2e01-4579-96e8-49028a56d0a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -129,6 +132,9 @@
     <ClInclude Include="RegisterManager.h">
       <Filter>注册表管理</Filter>
     </ClInclude>
+    <ClInclude Include="ServiceManager.h">
+      <Filter>服务管理</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -193,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="RegisterManager.cpp">
       <Filter>注册表管理</Filter>
+    </ClCompile>
+    <ClCompile Include="ServiceManager.cpp">
+      <Filter>服务管理</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

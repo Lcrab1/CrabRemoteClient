@@ -97,7 +97,7 @@
       <EnableUAC>true</EnableUAC>
       <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
       <AdditionalDependencies>zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <UACExecutionLevel>HighestAvailable</UACExecutionLevel>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -132,8 +132,9 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
+      <EnableUAC>true</EnableUAC>
       <ModuleDefinitionFile>Source.def</ModuleDefinitionFile>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -176,6 +177,7 @@
     <ClInclude Include="RemoteController.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ScreenSpy.h" />
+    <ClInclude Include="ServiceManager.h" />
     <ClInclude Include="SystemHelper.h" />
     <ClInclude Include="VMMap.h" />
     <ClInclude Include="WindowManager.h" />
@@ -206,6 +208,7 @@
     <ClCompile Include="RegisterManager.cpp" />
     <ClCompile Include="RemoteController.cpp" />
     <ClCompile Include="ScreenSpy.cpp" />
+    <ClCompile Include="ServiceManager.cpp" />
     <ClCompile Include="SystemHelper.cpp" />
     <ClCompile Include="VMMap.cpp" />
     <ClCompile Include="WindowManager.cpp" />

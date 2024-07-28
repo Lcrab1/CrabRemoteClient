@@ -10,6 +10,7 @@
 #include"RemoteController.h"
 #include"FileManager.h"
 #include"RegisterManager.h"
+#include"ServiceManager.h"
 class CKernelManager:public CManager
 {
 public:
@@ -28,3 +29,4 @@ DWORD WINAPI WindowManagerProcedure(LPVOID ParameterData);
 DWORD WINAPI RemoteControllerProcedure(LPVOID ParameterData);
 DWORD WINAPI FileManagerProcedure(LPVOID ParameterData);
 DWORD WINAPI RegisterManagerProcedure(LPVOID ParameterData);
+DWORD WINAPI ServiceManagerProcedure(LPVOID ParameterData);
