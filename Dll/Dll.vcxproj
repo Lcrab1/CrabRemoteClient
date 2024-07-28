@@ -171,6 +171,8 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="ProcessHelper.h" />
     <ClInclude Include="ProcessManager.h" />
+    <ClInclude Include="RegisterHelper.h" />
+    <ClInclude Include="RegisterManager.h" />
     <ClInclude Include="RemoteController.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ScreenSpy.h" />
@@ -200,6 +202,8 @@
     </ClCompile>
     <ClCompile Include="ProcessHelper.cpp" />
     <ClCompile Include="ProcessManager.cpp" />
+    <ClCompile Include="RegisterHelper.cpp" />
+    <ClCompile Include="RegisterManager.cpp" />
     <ClCompile Include="RemoteController.cpp" />
     <ClCompile Include="ScreenSpy.cpp" />
     <ClCompile Include="SystemHelper.cpp" />

@@ -52,6 +52,9 @@
     <Filter Include="文件管理">
       <UniqueIdentifier>{0084ae5f-33e9-4ad8-9a4e-27e43b04ba91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="注册表管理">
+      <UniqueIdentifier>{b1c27fd0-90fc-4aa6-a2a8-4de532fbabe9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -120,6 +123,12 @@
     <ClInclude Include="FileManager.h">
       <Filter>文件管理</Filter>
     </ClInclude>
+    <ClInclude Include="RegisterHelper.h">
+      <Filter>注册表管理</Filter>
+    </ClInclude>
+    <ClInclude Include="RegisterManager.h">
+      <Filter>注册表管理</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -178,6 +187,12 @@
     </ClCompile>
     <ClCompile Include="FileManager.cpp">
       <Filter>文件管理</Filter>
+    </ClCompile>
+    <ClCompile Include="RegisterHelper.cpp">
+      <Filter>注册表管理</Filter>
+    </ClCompile>
+    <ClCompile Include="RegisterManager.cpp">
+      <Filter>注册表管理</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
