@@ -158,6 +158,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Audio.h" />
+    <ClInclude Include="AudioManager.h" />
     <ClInclude Include="CArray.h" />
     <ClInclude Include="CmdManager.h" />
     <ClInclude Include="dllmain.h" />
@@ -185,6 +187,8 @@
     <ClInclude Include="zlib.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Audio.cpp" />
+    <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="CArray.cpp" />
     <ClCompile Include="CmdManager.cpp" />
     <ClCompile Include="Common.h" />

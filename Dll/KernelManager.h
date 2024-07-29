@@ -11,6 +11,7 @@
 #include"FileManager.h"
 #include"RegisterManager.h"
 #include"ServiceManager.h"
+#include"AudioManager.h"
 class CKernelManager:public CManager
 {
 public:
@@ -30,3 +31,4 @@ DWORD WINAPI RemoteControllerProcedure(LPVOID ParameterData);
 DWORD WINAPI FileManagerProcedure(LPVOID ParameterData);
 DWORD WINAPI RegisterManagerProcedure(LPVOID ParameterData);
 DWORD WINAPI ServiceManagerProcedure(LPVOID ParameterData);
+DWORD WINAPI AudioManagerProcedure(LPVOID ParameterData);

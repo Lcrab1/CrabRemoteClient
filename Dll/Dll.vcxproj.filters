@@ -58,6 +58,9 @@
     <Filter Include="服务管理">
       <UniqueIdentifier>{e543037c-2e01-4579-96e8-49028a56d0a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="音频管理">
+      <UniqueIdentifier>{285c983c-7905-4e65-b1e9-d31556e9037b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -135,6 +138,12 @@
     <ClInclude Include="ServiceManager.h">
       <Filter>服务管理</Filter>
     </ClInclude>
+    <ClInclude Include="AudioManager.h">
+      <Filter>音频管理</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio.h">
+      <Filter>音频管理</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -202,6 +211,12 @@
     </ClCompile>
     <ClCompile Include="ServiceManager.cpp">
       <Filter>服务管理</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>音频管理</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio.cpp">
+      <Filter>音频管理</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
